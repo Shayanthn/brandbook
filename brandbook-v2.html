@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زربَفین | برندبوک نسخه‌ی ۲٫۰ — سامانه‌ی هوشمند CRM · ECRM · MCRM برای هر کسب‌وکار</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Azeret+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ===== PALETTE A — «جوهر و اِمبر» (Ink & Ember) — پالت اصلی و اعمال‌شده در کل برندبوک ===== */
+  --ink:#17111c;
+  --ink-2:#1f1826;
+  --ink-3:#291f31;
+  --line:rgba(238,224,210,0.10);
+  --line-2:rgba(238,224,210,0.17);
+  --paper:#f7efe3;
+  --paper-dim:#eae0d0;
+  --kheshti:#e2a177;      /* خشتی — امضای برند */
+  --kheshti-deep:#c77f52;
+  --firoozeh:#7fbeb4;     /* فیروزه‌ی کدر — رشد/تأیید */
+  --firoozeh-deep:#57998f;
+  --aseman:#9aa8de;       /* آسمانه — هوش مصنوعی */
+  --aseman-deep:#7482c4;
+  --zafarani:#ddb65c;     /* زعفرانی — CTA/هشدار */
+  --zafarani-deep:#c0973c;
+  --text:#f5ede1;
+  --text-dim:#bcaeae;
+  --text-dim2:#c3b7c9;
+  --text-faint:#8d8093;
+  --radius-lg:26px;
+  --radius-md:18px;
+  --radius-sm:11px;
+  --f-fa:'Vazirmatn', Tahoma, sans-serif;
+  --f-serif:'Instrument Serif', serif;
+  --f-accent:'Bricolage Grotesque', sans-serif;
+  --f-mono:'Azeret Mono', monospace;
+  --shadow:0 30px 80px -30px rgba(0,0,0,0.65);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f-fa);background:var(--ink);color:var(--text);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--kheshti);color:var(--ink);}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 30px;}
+section{position:relative;padding:116px 0;}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.04em;color:var(--kheshti);font-weight:600;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(226,161,119,0.32);border-radius:999px;background:rgba(226,161,119,0.08);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px currentColor;opacity:.4;}
+h1,h2,h3,h4{font-family:var(--f-fa);font-weight:800;letter-spacing:-0.01em;color:var(--text);}
+.section-head{max-width:760px;margin-bottom:52px;}
+.section-head h2{font-size:clamp(27px,3.3vw,41px);line-height:1.34;margin-top:16px;}
+.section-head p{font-size:16px;color:var(--text-dim2);margin-top:15px;max-width:660px;}
+.latin{font-family:var(--f-serif);font-style:italic;}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-stagger>*{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.reveal-stagger.in>*{opacity:1;transform:translateY(0);}
+.reveal-stagger.in>*:nth-child(1){transition-delay:.03s;}
+.reveal-stagger.in>*:nth-child(2){transition-delay:.08s;}
+.reveal-stagger.in>*:nth-child(3){transition-delay:.13s;}
+.reveal-stagger.in>*:nth-child(4){transition-delay:.18s;}
+.reveal-stagger.in>*:nth-child(5){transition-delay:.23s;}
+
+.nav{position:fixed;top:0;right:0;left:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:15px 30px;backdrop-filter:blur(16px);background:rgba(23,17,28,0.74);border-bottom:1px solid var(--line);transition:padding .3s ease,background .3s ease;}
+.nav.scrolled{padding:10px 30px;background:rgba(23,17,28,0.94);}
+.nav-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:13.5px;}
+.nav-brand .mk{width:30px;height:30px;flex:none;}
+.nav-brand span{color:var(--text-faint);font-weight:500;font-size:12px;}
+.nav-links{display:flex;align-items:center;gap:22px;}
+.nav-links a{color:var(--text-dim2);font-size:13px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--kheshti);}
+@media(max-width:1040px){.nav-links{display:none;}}
+
+.hero{min-height:100vh;display:flex;align-items:center;flex-direction:column;justify-content:center;text-align:center;position:relative;padding-top:130px;padding-bottom:70px;overflow:hidden;
+  background:radial-gradient(ellipse 900px 560px at 50% -10%, rgba(226,161,119,0.13), transparent 60%),
+             radial-gradient(ellipse 700px 500px at 92% 100%, rgba(154,168,222,0.11), transparent 60%),
+             radial-gradient(ellipse 700px 500px at 4% 92%, rgba(127,190,180,0.09), transparent 60%), var(--ink);}
+.mark-wrap{width:min(150px,32vw);margin:0 auto 22px;}
+.hero .eyebrow{margin-bottom:24px;}
+.hero-name{font-family:var(--f-fa);font-weight:900;font-size:clamp(50px,8.6vw,112px);line-height:1;letter-spacing:-0.02em;}
+.hero-name .latin{display:block;font-weight:500;font-size:clamp(16px,2.2vw,25px);letter-spacing:.14em;color:var(--text-faint);margin-top:14px;text-transform:uppercase;}
+.hero-tag{font-size:clamp(17px,1.9vw,21px);color:var(--text-dim2);max-width:660px;margin:28px auto 6px;line-height:1.75;}
+.hero-tag b{color:var(--kheshti);font-weight:700;}
+.hero-meta{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:40px;}
+.hero-meta .item{display:flex;flex-direction:column;gap:3px;align-items:center;}
+.hero-meta .item b{font-family:var(--f-mono);font-size:12px;color:var(--firoozeh);letter-spacing:.02em;}
+.hero-meta .item span{font-size:11.5px;color:var(--text-faint);}
+.scroll-cue{margin-top:64px;display:flex;flex-direction:column;align-items:center;gap:9px;color:var(--text-faint);font-size:10.5px;font-family:var(--f-mono);}
+.scroll-cue .line{width:1px;height:34px;background:linear-gradient(180deg,var(--kheshti),transparent);animation:cue 1.8s infinite;}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}51%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+
+/* ---- INTRO NOTE ---- */
+.intro-note{background:var(--ink-2);}
+.note-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.note-card{background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-md);padding:26px 26px;}
+.note-card h5{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--firoozeh);margin-bottom:12px;}
+.note-card p{font-size:14px;color:var(--text-dim2);}
+.pos-box{margin-top:20px;background:linear-gradient(150deg, rgba(226,161,119,0.10), rgba(154,168,222,0.06));border:1px solid rgba(226,161,119,0.28);border-radius:var(--radius-lg);padding:26px 30px;}
+.pos-box b{color:var(--kheshti);}
+.pos-box p{font-size:15px;color:var(--text-dim2);line-height:1.85;}
+
+/* ---- STRATEGY ---- */
+.strategy{background:var(--ink);}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.pillar-card{background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-md);padding:26px 22px;transition:transform .3s ease,border-color .3s ease;}
+.pillar-card:hover{transform:translateY(-6px);border-color:var(--line-2);}
+.pillar-card .pic{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:16px;}
+.pillar-card h4{font-size:16.5px;margin-bottom:9px;}
+.pillar-card p{font-size:13.5px;color:var(--text-dim2);}
+.p1 .pic{background:rgba(226,161,119,0.15);}
+.p2 .pic{background:rgba(127,190,180,0.15);}
+.p3 .pic{background:rgba(154,168,222,0.15);}
+
+/* ---- NAMING ---- */
+.naming{background:var(--ink-2);}
+.name-notice{display:flex;gap:14px;background:rgba(221,182,92,0.07);border:1px dashed rgba(221,182,92,0.42);border-radius:var(--radius-md);padding:18px 22px;margin-bottom:34px;align-items:flex-start;}
+.name-notice .ic{font-size:17px;flex:none;margin-top:1px;}
+.name-notice p{font-size:13.3px;color:var(--text-dim2);}
+.name-notice b{color:var(--zafarani);}
+
+.pick-hero{background:linear-gradient(150deg, rgba(226,161,119,0.11), rgba(154,168,222,0.06));border:1px solid rgba(226,161,119,0.32);border-radius:var(--radius-lg);padding:32px 34px;margin-bottom:20px;display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:center;}
+.pick-hero .ph-left{display:flex;align-items:center;gap:20px;}
+.pick-hero .ph-mark{width:58px;height:58px;flex:none;}
+.pick-hero h3{font-size:25px;}
+.pick-hero h3 .latin{color:var(--kheshti);font-size:16px;letter-spacing:.05em;margin-right:9px;}
+.pick-hero p{font-size:13.3px;color:var(--text-dim2);max-width:500px;margin-top:8px;}
+.pick-badge{font-family:var(--f-mono);font-size:11.5px;color:var(--ink);background:var(--kheshti);padding:9px 17px;border-radius:999px;font-weight:700;white-space:nowrap;}
+
+.alt-strip{display:flex;gap:14px;align-items:center;background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-md);padding:16px 22px;margin-bottom:34px;font-size:13px;color:var(--text-faint);}
+.alt-strip b{color:var(--text-dim2);font-weight:600;}
+
+.name-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;border-bottom:1px solid var(--line);padding-bottom:20px;}
+.name-tab{padding:9px 17px;border-radius:999px;font-size:13px;font-weight:600;color:var(--text-dim2);background:var(--ink-3);border:1px solid transparent;transition:all .25s ease;}
+.name-tab:hover{border-color:var(--line-2);}
+.name-tab.active{background:var(--kheshti);color:var(--ink);}
+.name-panel{display:none;}
+.name-panel.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:13px;animation:fade .4s ease both;}
+@keyframes fade{from{opacity:0;transform:translateY(9px);}to{opacity:1;transform:translateY(0);}}
+
+.name-card{background:var(--ink);border:1px solid var(--line);border-radius:var(--radius-sm);padding:17px 19px;transition:border-color .25s ease,transform .25s ease;}
+.name-card:hover{border-color:var(--line-2);transform:translateY(-3px);}
+.name-card .nc-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px;}
+.name-card .nc-fa{font-size:18.5px;font-weight:800;}
+.name-card .nc-en{font-family:var(--f-mono);font-size:10.5px;color:var(--text-faint);}
+.name-card .nc-mean{font-size:12.5px;color:var(--text-dim2);margin-bottom:11px;min-height:34px;}
+.nc-score{display:flex;align-items:center;gap:8px;}
+.nc-score .dots{display:flex;gap:3px;}
+.nc-score .d{width:6px;height:6px;border-radius:50%;background:var(--line-2);}
+.nc-score .d.on{background:var(--firoozeh);}
+.nc-score span{font-family:var(--f-mono);font-size:10px;color:var(--text-faint);}
+
+/* ---- IDENTITY ---- */
+.identity{background:var(--ink);}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.id-card{background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;}
+.id-card h4{font-size:14px;color:var(--text-faint);font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.04em;margin-bottom:18px;font-weight:600;}
+.mark-stage{background:var(--ink-2);border-radius:var(--radius-md);padding:36px;display:flex;align-items:center;justify-content:center;min-height:190px;margin-bottom:15px;}
+.mark-stage.light{background:var(--paper);}
+.mark-stage svg{width:108px;height:108px;}
+.id-card p{font-size:13.3px;color:var(--text-dim2);}
+.clearspace-note{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:12.3px;color:var(--text-faint);}
+.dont-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+.dont-item{background:var(--ink-2);border:1px solid rgba(226,161,119,0.22);border-radius:12px;padding:14px;text-align:center;}
+.dont-item svg{width:42px;height:42px;margin:0 auto 8px;opacity:.55;}
+.dont-item span{font-size:10.7px;color:var(--text-faint);display:block;}
+
+/* ---- COLOR ---- */
+.colorsec{background:var(--ink-2);}
+.palette-set{display:flex;flex-direction:column;gap:20px;margin-bottom:30px;}
+.pal-card{background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px 26px 22px;}
+.pal-card.active-pal{border-color:rgba(226,161,119,0.5);}
+.pal-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
+.pal-head h4{font-size:18px;}
+.pal-head h4 .latin{color:var(--kheshti);font-size:14px;margin-right:8px;}
+.pal-head p{font-size:12.8px;color:var(--text-faint);max-width:480px;margin-top:5px;}
+.pal-tag{font-family:var(--f-mono);font-size:10.5px;padding:5px 12px;border-radius:999px;background:rgba(226,161,119,0.14);color:var(--kheshti);white-space:nowrap;height:fit-content;}
+.pal-swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+.sw{border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+.sw .f{height:64px;}
+.sw .i{padding:8px 9px;background:var(--ink-2);}
+.sw .i .n{font-size:11px;font-weight:700;}
+.sw .i .h{font-family:var(--f-mono);font-size:9.5px;color:var(--text-faint);margin-top:2px;}
+@media(max-width:760px){.pal-swatches{grid-template-columns:repeat(3,1fr);}}
+
+.usage-note{margin-top:6px;display:flex;gap:14px;background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-md);padding:19px 21px;align-items:flex-start;}
+.usage-note .ic{font-size:17px;flex:none;}
+.usage-note p{font-size:13.3px;color:var(--text-dim2);}
+.usage-note b{color:var(--text);}
+
+/* ---- LIVE TESTER ---- */
+.tester{margin-top:34px;}
+.tester-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;}
+.tester-head h4{font-size:15px;}
+.pal-buttons{display:flex;gap:8px;flex-wrap:wrap;}
+.pal-btn{font-size:12.5px;font-weight:600;padding:8px 15px;border-radius:999px;border:1px solid var(--line-2);color:var(--text-dim2);background:var(--ink-3);transition:all .2s ease;}
+.pal-btn.active{background:var(--text);color:var(--ink);border-color:var(--text);}
+.demo-panel{border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow);border:1px solid var(--line);transition:background .3s ease;background:var(--dc, var(--ink));}
+.demo-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.demo-brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:13.5px;color:var(--dt,#fff);}
+.demo-brand .dotm{width:20px;height:20px;border-radius:6px;background:var(--dp,#E2A177);}
+.demo-top span{font-family:var(--f-mono);font-size:10px;color:var(--dtf,#8d8093);}
+.demo-body{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
+.demo-stat{background:var(--dc2,#1F1826);border-radius:11px;padding:13px;border:1px solid rgba(255,255,255,0.06);}
+.demo-stat .k{font-family:var(--f-mono);font-size:19px;font-weight:700;}
+.demo-stat .l{font-size:10px;color:var(--dtf,#8d8093);margin-top:5px;}
+.demo-rows{display:flex;flex-direction:column;gap:8px;}
+.demo-row{display:flex;align-items:center;gap:10px;background:var(--dc2,#1F1826);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:10px 12px;}
+.demo-row .av{width:26px;height:26px;border-radius:7px;flex:none;}
+.demo-row .body{flex:1;}
+.demo-row .t{font-size:11.5px;font-weight:600;color:var(--dt,#fff);}
+.demo-row .s{font-size:10px;color:var(--dtf,#8d8093);font-family:var(--f-mono);margin-top:2px;}
+.demo-row .status{font-family:var(--f-mono);font-size:9px;padding:4px 8px;border-radius:6px;}
+
+/* ---- TYPE ---- */
+.typesec{background:var(--ink);}
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
+.type-card{background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;}
+.type-card h5{font-family:var(--f-mono);font-size:11px;color:var(--kheshti);text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;}
+.type-card .sample-fa{font-family:var(--f-fa);font-weight:800;font-size:32px;margin-bottom:6px;}
+.type-card .sample-en{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:27px;color:var(--text-dim2);}
+.type-card .sample-accent{font-family:var(--f-accent);font-weight:700;font-size:22px;color:var(--text-dim2);}
+.type-card .sample-mono{font-family:var(--f-mono);font-weight:500;font-size:20px;color:var(--firoozeh);}
+.type-card .body-sample{font-size:14px;color:var(--text-dim2);margin-top:15px;line-height:1.9;}
+.type-quad{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.tq-item{background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-md);padding:18px;}
+.tq-item .job{font-family:var(--f-mono);font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.05em;margin-top:10px;}
+.type-scale{display:flex;flex-direction:column;gap:15px;}
+.tsc-row{display:flex;align-items:baseline;gap:16px;border-bottom:1px dashed var(--line);padding-bottom:13px;}
+.tsc-row .lbl{font-family:var(--f-mono);font-size:10px;color:var(--text-faint);width:100px;flex:none;}
+.tsc-row .sample{font-family:var(--f-fa);font-weight:800;}
+
+/* ---- VOICE ---- */
+.voicesec{background:var(--ink-2);}
+.tagline-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:34px;}
+.tag-card{background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-md);padding:20px 22px;}
+.tag-card.win{border-color:rgba(226,161,119,0.5);background:linear-gradient(150deg, rgba(226,161,119,0.09), transparent);}
+.tag-card p{font-size:15px;font-weight:600;}
+.tag-card span{font-size:11.5px;color:var(--text-faint);display:block;margin-top:8px;}
+.voice-pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:36px;}
+.vp{background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-sm);padding:19px 15px;text-align:center;}
+.vp .vp-ic{font-size:21px;margin-bottom:9px;}
+.vp h5{font-size:14px;margin-bottom:6px;}
+.vp p{font-size:11.5px;color:var(--text-faint);}
+.voice-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.vc-col{border-radius:var(--radius-md);padding:22px;border:1px solid var(--line);}
+.vc-col.no{background:rgba(226,161,119,0.04);border-color:rgba(226,161,119,0.22);}
+.vc-col.yes{background:rgba(127,190,180,0.06);border-color:rgba(127,190,180,0.28);}
+.vc-col h5{font-size:12.5px;margin-bottom:15px;display:flex;align-items:center;gap:8px;}
+.vc-item{font-size:13px;color:var(--text-dim2);padding:11px 0;border-bottom:1px dashed var(--line);}
+.vc-item:last-child{border-bottom:none;}
+
+/* ---- VERTICALS ---- */
+.verticals{background:var(--ink);}
+.vert-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+.vert-card{border-radius:var(--radius-md);padding:22px 18px;border:1px solid var(--line);background:var(--ink-3);position:relative;overflow:hidden;}
+.vert-card::before{content:'';position:absolute;top:0;right:0;left:0;height:4px;}
+.vc-clinic::before{background:var(--kheshti);}
+.vc-med::before{background:var(--aseman);}
+.vc-cafe::before{background:var(--zafarani);}
+.vc-auto::before{background:var(--firoozeh);}
+.vc-any::before{background:linear-gradient(90deg,var(--kheshti),var(--firoozeh),var(--aseman),var(--zafarani));}
+.vert-card .vic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:14px;}
+.vc-clinic .vic{background:rgba(226,161,119,0.17);}
+.vc-med .vic{background:rgba(154,168,222,0.17);}
+.vc-cafe .vic{background:rgba(221,182,92,0.17);}
+.vc-auto .vic{background:rgba(127,190,180,0.17);}
+.vc-any .vic{background:rgba(255,255,255,0.08);}
+.vert-card h5{font-size:14px;margin-bottom:7px;}
+.vert-card p{font-size:12px;color:var(--text-dim2);}
+@media(max-width:1040px){.vert-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.vert-grid{grid-template-columns:repeat(2,1fr);}}
+
+/* ---- APPLICATION ---- */
+.applic{background:var(--ink-2);}
+.mock-frame{background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow);}
+.mock-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line);}
+.mock-brand{display:flex;align-items:center;gap:10px;}
+.mock-brand svg{width:26px;height:26px;}
+.mock-brand span{font-weight:800;font-size:14.5px;}
+.mock-body{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}
+.mock-stat{background:var(--ink-2);border-radius:12px;padding:15px;border:1px solid var(--line);}
+.mock-stat .k{font-family:var(--f-mono);font-size:21px;font-weight:700;}
+.mock-stat .l{font-size:10.5px;color:var(--text-faint);margin-top:5px;}
+.mock-rows{display:flex;flex-direction:column;gap:9px;}
+.mock-row{display:flex;align-items:center;gap:12px;background:var(--ink-2);border:1px solid var(--line);border-radius:11px;padding:11px 13px;}
+.mock-row .av{width:28px;height:28px;border-radius:8px;flex:none;}
+.mock-row .body{flex:1;}
+.mock-row .t{font-size:12px;font-weight:600;}
+.mock-row .s{font-size:10.5px;color:var(--text-faint);font-family:var(--f-mono);margin-top:2px;}
+.mock-row .status{font-family:var(--f-mono);font-size:9.5px;padding:4px 8px;border-radius:6px;}
+
+/* ---- GOVERNANCE ---- */
+.govern{background:var(--ink);}
+.gov-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.gov-item{display:flex;gap:12px;background:var(--ink-3);border:1px solid var(--line);border-radius:var(--radius-sm);padding:15px 17px;align-items:flex-start;}
+.gov-item .gi{width:23px;height:23px;border-radius:7px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(127,190,180,0.17);color:var(--firoozeh);font-size:11.5px;margin-top:1px;}
+.gov-item p{font-size:13px;color:var(--text-dim2);}
+.gov-item b{color:var(--text);}
+
+/* ---- CLOSING ---- */
+.closing{background:linear-gradient(160deg,var(--ink) 0%, var(--ink-2) 100%);text-align:center;padding:120px 0;position:relative;overflow:hidden;}
+.closing::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 700px 400px at 50% 0%, rgba(226,161,119,0.15), transparent 65%);}
+.closing .wrap{position:relative;z-index:1;}
+.closing h2{font-size:clamp(25px,3.3vw,38px);max-width:740px;margin:18px auto 16px;line-height:1.42;}
+.closing p{font-size:14.5px;color:var(--text-dim2);max-width:560px;margin:0 auto 8px;}
+footer{background:#0d0a11;color:var(--text-faint);padding:32px 0;text-align:center;font-size:11.5px;}
+
+@media(max-width:980px){
+  .pillars{grid-template-columns:1fr;}
+  .id-grid{grid-template-columns:1fr;}
+  .type-grid{grid-template-columns:1fr;}
+  .type-quad{grid-template-columns:repeat(2,1fr);}
+  .voice-pillars{grid-template-columns:repeat(2,1fr);}
+  .voice-compare{grid-template-columns:1fr;}
+  .tagline-grid{grid-template-columns:1fr;}
+  .mock-body{grid-template-columns:repeat(2,1fr);}
+  .demo-body{grid-template-columns:repeat(2,1fr);}
+  .gov-grid{grid-template-columns:1fr;}
+  .dont-row{grid-template-columns:1fr;}
+  .note-grid{grid-template-columns:1fr;}
+}
+@media(max-width:620px){
+  .wrap{padding:0 18px;}
+  section{padding:76px 0;}
+  .pal-swatches{grid-template-columns:repeat(2,1fr);}
+  .name-panel.active{grid-template-columns:1fr;}
+  .pick-hero{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-brand">
+    <svg class="mk" viewBox="0 0 60 60"><use href="#zarbafin-mark"></use></svg>
+    <span>برندبوک نسخه‌ی ۲٫۰</span>
+  </div>
+  <div class="nav-links">
+    <a href="#naming">اسم‌گذاری</a>
+    <a href="#identity">هویت بصری</a>
+    <a href="#color">رنگ</a>
+    <a href="#type">تایپوگرافی</a>
+    <a href="#voice">لحن برند</a>
+    <a href="#verticals">صنوف</a>
+    <a href="#govern">حاکمیت</a>
+  </div>
+</nav>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="zarbafin-mark" viewBox="0 0 60 60">
+      <rect x="1" y="1" width="58" height="58" rx="17" fill="#17111c"/>
+      <path d="M14 40 C14 22 21 13 30 13 C35 13 38.5 15.5 41 19.5" stroke="#e2a177" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+      <path d="M47 21 C47 39 39 47 30 47 C25.5 47 22 44.5 19.5 40.5" stroke="#7fbeb4" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+      <path d="M17 18 C24 29 36 31 43 42" stroke="#9aa8de" stroke-width="3.1" fill="none" stroke-linecap="round" opacity="0.92"/>
+      <circle cx="30" cy="30" r="3.3" fill="#ddb65c"/>
+    </symbol>
+    <symbol id="zarbafin-mark-light" viewBox="0 0 60 60">
+      <rect x="1" y="1" width="58" height="58" rx="17" fill="#f7efe3"/>
+      <path d="M14 40 C14 22 21 13 30 13 C35 13 38.5 15.5 41 19.5" stroke="#c77f52" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+      <path d="M47 21 C47 39 39 47 30 47 C25.5 47 22 44.5 19.5 40.5" stroke="#57998f" stroke-width="3.1" fill="none" stroke-linecap="round"/>
+      <path d="M17 18 C24 29 36 31 43 42" stroke="#7482c4" stroke-width="3.1" fill="none" stroke-linecap="round" opacity="0.92"/>
+      <circle cx="30" cy="30" r="3.3" fill="#c0973c"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <div class="wrap">
+    <div class="mark-wrap"><svg viewBox="0 0 60 60"><use href="#zarbafin-mark"></use></svg></div>
+    <span class="eyebrow"><span class="dot"></span> برندبوک نسخه‌ی ۲٫۰ — سامانه‌ی هوشمند CRM · ECRM · MCRM برای هر کسب‌وکار</span>
+    <h1 class="hero-name">زربَفین<span class="latin">Zarbafin</span></h1>
+    <p class="hero-tag">هر کسب‌وکاری یک رشته‌ی طلایی با مشتریانش دارد؛ <b>زربَفین</b> آن رشته را می‌بیند، آن را با هوش مصنوعی می‌بافد، و هرگز نمی‌گذارد از دست برود — از کلینیک تا کافه، از مطب تا نمایشگاه خودرو.</p>
+    <div class="hero-meta">
+      <div class="item"><b>۱ اسم پیشنهادی، ۵۱ گزینه‌ی تازه</b><span>هیچ‌کدام تکرار نسخه‌ی قبل نیست</span></div>
+      <div class="item"><b>۳ پالت رنگی، قابل‌آزمایش زنده</b><span>پنل تست تعاملی در ادامه</span></div>
+      <div class="item"><b>۴ فونت، ۴ وظیفه‌ی مجزا</b><span>هیچ‌کدام فونت رایج قبلی نیست</span></div>
+    </div>
+    <div class="scroll-cue"><span>اسکرول کنید</span><div class="line"></div></div>
+  </div>
+</header>
+
+<!-- ============ INTRO / WHAT CHANGED ============ -->
+<section class="intro-note" id="intro">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">چه چیزی در این نسخه عوض شده</span>
+      <h2>همان مأموریت، هویتی کاملاً بازساخته</h2>
+      <p>این نسخه پاسخ مستقیم به سه ایراد نسخه‌ی ۱ است: فهرست اسم‌ها محدود بود → این‌جا ۵۱ اسم کاملاً تازه با هیچ همپوشانی. شعار ضعیف بود → این‌جا مجموعه‌ای از شعارهای تازه با یک برنده‌ی مشخص. پالت فقط یک گزینه بود و قابل‌آزمایش نبود → این‌جا سه پالت کاملاً متفاوت، با یک پنل زنده که رنگ‌ها را روی یک داشبورد واقعی نشان می‌دهد. فونت دیتا (JetBrains Mono) هم با <b style="color:var(--zafarani)">Azeret Mono</b> جایگزین شده — فونتی با شخصیت مهندسی/OCR که کمتر در محصولات دیگر دیده می‌شود.</p>
+    </div>
+    <div class="pos-box reveal">
+      <p><b>جمله‌ی جایگاه‌یابی:</b> برای کلینیک‌های زیبایی، مطب‌ها، کافه و رستوران‌ها، نمایشگاه‌های خودرو و هر کسب‌وکار دیگری که مشتری دارد، <b style="color:var(--kheshti)">زربَفین</b> زیرساخت هوشمند CRM·ECRM·MCRM است که یک هسته‌ی فنی مشترک را زیر پوستِ اختصاصیِ هر صنف عرضه می‌کند — طوری که مشتریِ نهایی هرگز حس نمی‌کند از یک قالبِ عمومی استفاده می‌شود.</p>
+    </div>
+    <div class="note-grid" style="margin-top:20px;">
+      <div class="note-card reveal">
+        <h5>یادداشتی درباره‌ی «هیچ‌جای اینترنت نباشد»</h5>
+        <p>برای ۵۱ اسم، تضمینِ صددرصدیِ نبودن در کل اینترنت در یک نشست ممکن نیست — من فقط به وب دسترسی دارم، نه به سامانه‌ی رسمی اداره‌ی ثبت علائم تجاری ایران یا پایگاه‌های WIPO/USPTO. جزئیات کامل در بخش اسم‌گذاری آمده.</p>
+      </div>
+      <div class="note-card reveal">
+        <h5>درباره‌ی دو کاتالوگ محصول</h5>
+        <p>در این نشست فقط فایل برندبوکِ نسخه‌ی ۱ برایم ارسال شده؛ دو کاتالوگ محصول (کلینیک زیبایی و CRM خودرو) که اشاره کردید، آپلود نشده‌اند. بخش «صنوف» را بر اساس همان اطلاعاتی که در نسخه‌ی ۱ ثبت شده بازسازی کردم — اگر آن دو فایل را بفرستید، بخش صنوف را با جزئیات دقیق‌تر (ماژول‌ها، واژگان صنفی، نمونه صفحات) به‌روزرسانی می‌کنم.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRATEGY ============ -->
+<section class="strategy" id="strategy">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">جایگاه برند</span>
+      <h2>یک هسته‌ی فنی، بی‌نهایت پوسته‌ی صنفی</h2>
+      <p>زربَفین محصول نیست — زیرساخت هوشمند رابطه با مشتری است. موتور مشترک (CRM هسته + ECRM چندکاناله + MCRM/باشگاه مشتریان + اتوماسیون بازاریابی هوشمند) زیر پوستِ هر صنف با واژگان، لحن و منطق عملیاتی همان صنف عرضه می‌شود.</p>
+    </div>
+    <div class="pillars reveal-stagger">
+      <div class="pillar-card p1"><div class="pic">🧶</div><h4>یک رشته، بی‌نهایت صنف</h4><p>موتور اتوماسیون و مدل داده یکسان است؛ فقط پوسته، واژگان و قوانین کسب‌وکار برای هر صنف از نو بافته می‌شود.</p></div>
+      <div class="pillar-card p2"><div class="pic">🎯</div><h4>لحن مؤسسه‌ای، نه استارتاپی</h4><p>مخاطب زربَفین مجموعه‌های بزرگ و جدی است؛ برند باید هم در اتاق هیئت‌مدیره، هم دست منشی پذیرش، معتبر بماند.</p></div>
+      <div class="pillar-card p3"><div class="pic">🌍</div><h4>ایرانی در ریشه، جهانی در قامت</h4><p>نام از دلِ صنعت‌دستی و زبان ایرانی بیرون می‌آید، اما در تلفظ، رنگ و تایپوگرافی کنار هر برند بین‌المللی بی‌نقص می‌نشیند.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NAMING ============ -->
+<section class="naming" id="naming">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">سیستم نام‌گذاری — نسخه‌ی ۲</span>
+      <h2>۵۱ اسم کاملاً تازه، در پنج مسیر متفاوت</h2>
+      <p>هیچ‌کدام از این ۵۱ گزینه در فهرست ۵۲‌تاییِ نسخه‌ی ۱ (از جمله «پرنیوا») تکرار نشده. هر اسم با ریشه، معنی و امتیاز برندپذیری (تلفظ فارسی/لاتین + تمایز + تناسب با هوش مصنوعی و رابطه با مشتری) آمده.</p>
+    </div>
+
+    <div class="name-notice reveal">
+      <span class="ic">⚠️</span>
+      <p><b>محدودیت صادقانه:</b> بررسیِ رسمیِ اداره‌ی ثبت شرکت‌ها/علائم تجاری ایران یا پایگاه‌های بین‌المللی (WIPO، USPTO) در این نشست ممکن نیست — فقط جست‌وجوی وب انجام شده. برای حدود ده گزینه‌ی برتر این فهرست (از جمله زربَفین، مهرافزار، یکتاوند) جست‌وجوی مستقیم شد و هیچ کسب‌وکار فعالی با همین نام پیدا نشد. دو نامزدِ اولیه‌ی دیگر — <b>خاتمین</b> (بیش‌ازحد نزدیک به نام یک قرارگاه بزرگ ساختمانی و چند اپلیکیشن مذهبی فعال) و <b>ترنج</b> (که یک شرکت فناوری اطلاعات فعال در تهران دقیقاً همین نام را دارد) — به همین دلیل از فهرست نهایی حذف شدند. «فیروزان» نیز به‌عنوان نام‌خانوادگیِ رایج ایرانی در چند کشور دیده می‌شود، اما به‌عنوان برند فعال در حوزه‌ی نرم‌افزار/CRM یافت نشد. پیش از ثبت رسمیِ اسم نهایی، استعلام اداره‌ی ثبت علائم تجاری الزامی است؛ خوشحال می‌شوم برای گزینه‌ی نهاییِ شما این بررسی را عمیق‌تر هم انجام دهم.</p>
+    </div>
+
+    <div class="pick-hero reveal">
+      <div class="ph-left">
+        <svg class="ph-mark" viewBox="0 0 60 60"><use href="#zarbafin-mark"></use></svg>
+        <div>
+          <h3>زربَفین <span class="latin">Zarbafin</span></h3>
+          <p>از «زربَفت» — پارچه‌ای که با نخ طلا بافته می‌شود، از عالی‌ترین دستبافته‌های درباری ایران. استعاره‌ای دقیق برای CRM: هر مشتری یک نخ طلاست که در پارچه‌ی برند شما بافته می‌شود، نه فقط یک ردیف در جدول.</p>
+        </div>
+      </div>
+      <span class="pick-badge">پیشنهاد نسخه‌ی ۲ ⭐ — ۹/۱۰</span>
+    </div>
+
+    <div class="alt-strip reveal">
+      <span>🔁</span>
+      <span><b>پرنیوا (Parniva)</b> از نسخه‌ی ۱ همچنان یک گزینه‌ی معتبر و تثبیت‌شده است — قبلاً بررسی شد و برخوردی پیدا نشد. اگر ترجیح می‌دهید ادامه‌دهنده‌ی همان مسیر باشید، می‌توانیم هویت این نسخه (پالت، فونت، لوگو) را روی همان اسم پیاده کنیم؛ ساختار زیر مستقل از انتخاب اسم کار می‌کند.</span>
+    </div>
+
+    <div class="name-tabs" id="nameTabs">
+      <button class="name-tab active" data-cat="craft">هنر و متریال ایرانی</button>
+      <button class="name-tab" data-cat="short">انتزاعی کوتاه، جهانی‌پسند</button>
+      <button class="name-tab" data-cat="coined">ترکیب‌های ابداعی فارسی-مدرن</button>
+      <button class="name-tab" data-cat="latin">لاتین / بین‌المللی</button>
+      <button class="name-tab" data-cat="power">تک‌واژه‌های نمادین</button>
+    </div>
+
+    <div class="name-panel active" data-panel="craft">
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">زربَفین</span><span class="nc-en">Zarbafin</span></div><div class="nc-mean">از زربفت؛ پارچه‌ی بافته‌شده با نخ طلا ⭐ پیشنهاد اصلی</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span></div><span>۹/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">ترمه‌نو</span><span class="nc-en">Termenow</span></div><div class="nc-mean">طرح باستانیِ ترمه، بازبافته برای عصر داده</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div><span>۸/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">میناra</span><span class="nc-en">Meenara</span></div><div class="nc-mean">از میناکاری؛ درخشش لایه‌لایه و دقیق</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div><span>۸/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">لاجورین</span><span class="nc-en">Lajvarin</span></div><div class="nc-mean">از لاجورد؛ عمق و اعتبار در یک رنگ، در یک نام</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">فیروزان</span><span class="nc-en">Firoozan</span></div><div class="nc-mean">فیروزه‌گونه؛ محافظت و اعتماد — نام‌خانوادگی رایج، احتیاط لازم است</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">صدفان</span><span class="nc-en">Sadafan</span></div><div class="nc-mean">هر مشتری مثل مرواریدی در دل صدف پرورش می‌یابد</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div><span>۸/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">زرین‌بافت</span><span class="nc-en">Zarrinbaft</span></div><div class="nc-mean">پارچه‌ی زرین داده؛ رسمی و پرمایه</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">ابریشمان</span><span class="nc-en">Abrishaman</span></div><div class="nc-mean">از ابریشم؛ نرمی در تعامل، استحکام در زیرساخت</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div><span>۸/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">گلیمان</span><span class="nc-en">Goliman</span></div><div class="nc-mean">از گلیم؛ نقشِ به‌هم‌بافته‌ی رنگ‌های مختلف صنف‌ها</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">نقش‌بان</span><span class="nc-en">Naghshban</span></div><div class="nc-mean">نگهبانِ نقش؛ ثبت و پاسداریِ داستان هر مشتری</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">سیم‌گون</span><span class="nc-en">Simgoon</span></div><div class="nc-mean">نقره‌فام؛ روشن، دقیق، بی‌آلایش</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">قلم‌زن</span><span class="nc-en">Ghalamzan</span></div><div class="nc-mean">از قلم‌زنی روی فلز؛ حکاکیِ دقیقِ ارزش در هر تعامل</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">زرگون</span><span class="nc-en">Zargoun</span></div><div class="nc-mean">به‌رنگ طلا؛ کوتاه، خاص، مستقیم</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+    </div>
+
+    <div class="name-panel" data-panel="short">
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">روانیا</span><span class="nc-en">Ravanya</span></div><div class="nc-mean">از روان؛ جریانِ نرم داده و رابطه</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">ستاوان</span><span class="nc-en">Setavan</span></div><div class="nc-mean">ابداعی؛ آوایی محکم و مؤسسه‌ای</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">نیورا</span><span class="nc-en">Niora</span></div><div class="nc-mean">کوتاه، بین‌المللی، بدون بار معناییِ سنگین</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">فرسان</span><span class="nc-en">Farsan</span></div><div class="nc-mean">یادآور «فَر» (شکوه)؛ کوتاه و رسا</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">بامیوا</span><span class="nc-en">Bamiva</span></div><div class="nc-mean">بام (افق دید) + ایوا؛ دیدِ کلان روی داده‌ی مشتری</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">هزاران</span><span class="nc-en">Hazaran</span></div><div class="nc-mean">هم «هزاران» مشتری، هم نام گلِ هزارگل؛ بازی زبانی هوشمند</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">کلارا</span><span class="nc-en">Kelara</span></div><div class="nc-mean">ابداعی، ریشه در کَلاله (رشته‌ی گیسو)؛ نرم و لوکس</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">سپیدان</span><span class="nc-en">Sepidan</span></div><div class="nc-mean">از سپید؛ شفافیت کامل در داده‌ی مشتری</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">ورنا</span><span class="nc-en">Varena</span></div><div class="nc-mean">کوتاه، آوایی نرم و لوکس، بدون بار معناییِ سنگین</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">توسن</span><span class="nc-en">Tosan</span></div><div class="nc-mean">اسب سرکش و چابک؛ سرعت اتوماسیون بازاریابی</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">دل‌نگار</span><span class="nc-en">Delnegar</span></div><div class="nc-mean">دل + نگار؛ نگارگریِ رابطه‌ی قلبی با مشتری، گرم و انسانی</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+    </div>
+
+    <div class="name-panel" data-panel="coined">
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">هوش‌وان</span><span class="nc-en">Hooshvan</span></div><div class="nc-mean">هوش + وان (پسوند ظرف)؛ خانه‌ی هوشِ مشتری</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div><span>۸/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">مهرافزار</span><span class="nc-en">Mehrafzar</span></div><div class="nc-mean">مهر (محبت) + افزار؛ ابزاری که با گرمای انسانی کار می‌کند</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div><span>۸/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">روشنیک</span><span class="nc-en">Roshanik</span></div><div class="nc-mean">از روشن؛ شفافیت کامل در گزارش و تصمیم</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">چابکان</span><span class="nc-en">Chabokan</span></div><div class="nc-mean">از چابک؛ سرعت راه‌اندازی برای هر صنف</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">عمیقان</span><span class="nc-en">Amikan</span></div><div class="nc-mean">از عمیق؛ تحلیل عمیق رفتار مشتری</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">یکتاوند</span><span class="nc-en">Yektavand</span></div><div class="nc-mean">از یکتا؛ هر مشتری به‌شکلی یکتا دیده و پیگیری می‌شود</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span></div><span>۸/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">بافتار</span><span class="nc-en">Baftaar</span></div><div class="nc-mean">از بافتن؛ معادل مدرنِ مفهوم بافندگیِ داده</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">روانیک</span><span class="nc-en">Ravanic</span></div><div class="nc-mean">جریانِ نرم و بی‌وقفه‌ی اتوماسیون</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">فرزین</span><span class="nc-en">Farzin</span></div><div class="nc-mean">مهره‌ی وزیر در شطرنج کهن ایرانی؛ نمادِ هوشِ راهبردی</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">فرزانیک</span><span class="nc-en">Farzanik</span></div><div class="nc-mean">از فرزانه (دانا)؛ دانشِ رفتار مشتری در یک کلمه</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">ره‌نورد</span><span class="nc-en">Rahnavard</span></div><div class="nc-mean">وایفارِ راه؛ همراهِ مسیرِ رشدِ هر کسب‌وکار — بررسیِ برخورد کامل نشده</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+    </div>
+
+    <div class="name-panel" data-panel="latin">
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Threadyx</span><span class="nc-en">Thread + yx</span></div><div class="nc-mean">نخِ دیجیتالِ رابطه با مشتری، با پسوندی تکنولوژیک</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Weavlyn</span><span class="nc-en">Weave + lyn</span></div><div class="nc-mean">بافتن + لطافت؛ نرم و بین‌المللی</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Fabrion</span><span class="nc-en">Fabric + ion</span></div><div class="nc-mean">پارچه‌ی هوشمندِ برند، با پسوندی علمی و رسمی</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Nexthread</span><span class="nc-en">Next + Thread</span></div><div class="nc-mean">نسل بعدیِ رابطه‌ی بافته‌شده با داده</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Pulseloom</span><span class="nc-en">Pulse + Loom</span></div><div class="nc-mean">نبضِ کسب‌وکار روی دستگاهِ بافندگیِ داده</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Cordevo</span><span class="nc-en">Cord + Evolve</span></div><div class="nc-mean">ریسمانی که با هر تعامل مشتری تکامل می‌یابد</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Threnity</span><span class="nc-en">Thread + Affinity</span></div><div class="nc-mean">پیوندِ عمیقِ نخ‌گونه‌ی برند و مشتری</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Braidora</span><span class="nc-en">Braid + ora</span></div><div class="nc-mean">گیسوبافیِ داده، با پسوندی درخشان و لوکس</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Silkarion</span><span class="nc-en">Silk + arion</span></div><div class="nc-mean">ابریشمِ دیجیتال؛ لوکس و بین‌المللی</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Vialoop</span><span class="nc-en">Via + Loop</span></div><div class="nc-mean">مسیر حلقوی رابطه با مشتری، در همه‌ی کانال‌ها</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Corethread</span><span class="nc-en">Core + Thread</span></div><div class="nc-mean">هسته‌ی بافته‌شده؛ دقیقاً معادل موقعیت برند</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">Meshtra</span><span class="nc-en">Mesh + tra</span></div><div class="nc-mean">شبکه‌ی به‌هم‌تنیده‌ی داده‌ی مشتری در همه‌ی صنف‌ها</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+    </div>
+
+    <div class="name-panel" data-panel="power">
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">وانداra</span><span class="nc-en">Vandara</span></div><div class="nc-mean">وند (تعلق) + دارا؛ آنکه صاحب رابطه‌ای وفادار با مشتری است</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">راونتا</span><span class="nc-en">Rawenta</span></div><div class="nc-mean">از روان؛ جریان بی‌وقفه‌ی داده و تصمیم</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۶/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">کیانور</span><span class="nc-en">Kiyanoor</span></div><div class="nc-mean">کیان (بنیاد/شکوه) + نور؛ نورِ راهبردی برای تصمیم‌های کسب‌وکار</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span></div><span>۷/۱۰</span></div></div>
+      <div class="name-card"><div class="nc-top"><span class="nc-fa">ستاریک</span><span class="nc-en">Setarik</span></div><div class="nc-mean">یادآور ستاره؛ ساده و گرم، اما نزدیک به واژه‌ی رایج</div><div class="nc-score"><div class="dots"><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span></div><span>۵/۱۰</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IDENTITY ============ -->
+<section class="identity" id="identity">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">هویت بصری</span>
+      <h2>نشان زربَفین: سه رشته که در یک نقطه گره می‌خورند</h2>
+      <p>نشان از تلاقیِ سه خطِ منحنیِ رنگی ساخته شده — نه دو خط مثل نسخه‌ی قبل — چون زیرساخت زربَفین دقیقاً از سه رشته تشکیل شده: <b style="color:var(--kheshti)">CRM</b> هسته، <b style="color:var(--firoozeh)">ECRM</b> چندکاناله و <b style="color:var(--aseman)">MCRM</b>/باشگاه مشتریان. نقطه‌ی طلاییِ مرکز، لحظه‌ای‌ست که این سه رشته به یک تصمیم هوشمند تبدیل می‌شوند. قاب مربعِ گردگوشه (نه دایره‌ی نسخه‌ی قبل) حسِ محصول/داشبورد را به نشان اضافه می‌کند.</p>
+    </div>
+    <div class="id-grid reveal-stagger">
+      <div class="id-card">
+        <h4>نشان اصلی روی زمینه‌ی تیره</h4>
+        <div class="mark-stage"><svg viewBox="0 0 60 60"><use href="#zarbafin-mark"></use></svg></div>
+        <p>حالت پیش‌فرض برای پروفایل شبکه‌های اجتماعی، فاویکون، هدر داشبورد و همه‌ی محیط‌های محصول.</p>
+      </div>
+      <div class="id-card">
+        <h4>نشان روی زمینه‌ی روشن</h4>
+        <div class="mark-stage light"><svg viewBox="0 0 60 60"><use href="#zarbafin-mark-light"></use></svg></div>
+        <p>برای اسناد چاپی، قراردادها، فاکتور و هر جایی که پس‌زمینه‌ی روشن الزامی است.</p>
+      </div>
+    </div>
+    <div class="id-card reveal" style="margin-top:16px;">
+      <h4>حریم امن و ممنوعیت‌های استفاده</h4>
+      <div class="clearspace-note"><span>📏</span><p>حداقل فاصله‌ی آزاد اطراف نشان، برابر با نصف ارتفاع خود نشان است — هیچ متن یا عنصری نباید وارد این حریم شود. نشان باید در ۲۴ پیکسل (اندازه‌ی فاویکون) هم خوانا بماند و در حالت تک‌رنگ (سیاه یا سفید) هم کار کند.</p></div>
+      <div class="dont-row">
+        <div class="dont-item"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="#e2a177" stroke-width="2"/><line x1="10" y1="10" x2="34" y2="34" stroke="#e2a177" stroke-width="2"/></svg><span>کشیدن یا فشرده‌کردن نشان</span></div>
+        <div class="dont-item"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="#e2a177" stroke-width="2"/><line x1="10" y1="10" x2="34" y2="34" stroke="#e2a177" stroke-width="2"/></svg><span>تغییر رنگ خارج از پالت</span></div>
+        <div class="dont-item"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="#e2a177" stroke-width="2"/><line x1="10" y1="10" x2="34" y2="34" stroke="#e2a177" stroke-width="2"/></svg><span>افزودن سایه یا افکت اضافه</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOR ============ -->
+<section class="colorsec" id="color">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">پالت رنگی — سه مسیر متفاوت</span>
+      <h2>پاستل‌های جواهرگون، نه پاستلِ رقیق و کودکانه</h2>
+      <p>به‌جای یک پالت ثابت، این‌بار سه جهتِ کاملاً متفاوت طراحی شده تا واقعاً بتوانید مقایسه و تست کنید. هر سه از یک قاعده پیروی می‌کنند: حداکثر ۶ رنگ (۲ خنثی + ۴ رنگِ صنفی)، کنتراست کافی برای متن (حداقل ۴٫۵:۱ روی زمینه‌ی خودش)، و هیچ‌کدام رنگ‌های رایج SaaS (آبی-بنفشِ پیش‌فرض) را تکرار نمی‌کنند.</p>
+    </div>
+
+    <div class="palette-set reveal-stagger">
+      <div class="pal-card active-pal">
+        <div class="pal-head">
+          <div><h4>جوهر و اِمبر <span class="latin">Ink & Ember</span></h4><p>بومِ جوهریِ گرم + پاستل‌های خشتی/فیروزه/آسمانه/زعفرانی. پالتِ اعمال‌شده در کل این برندبوک.</p></div>
+          <span class="pal-tag">پالت اصلی — انتخاب‌شده</span>
+        </div>
+        <div class="pal-swatches">
+          <div class="sw"><div class="f" style="background:#17111c"></div><div class="i"><div class="n">جوهر</div><div class="h">#17111C</div></div></div>
+          <div class="sw"><div class="f" style="background:#f7efe3"></div><div class="i"><div class="n">کاغذ</div><div class="h">#F7EFE3</div></div></div>
+          <div class="sw"><div class="f" style="background:#e2a177"></div><div class="i"><div class="n">خشتی</div><div class="h">#E2A177</div></div></div>
+          <div class="sw"><div class="f" style="background:#7fbeb4"></div><div class="i"><div class="n">فیروزه‌ی کدر</div><div class="h">#7FBEB4</div></div></div>
+          <div class="sw"><div class="f" style="background:#9aa8de"></div><div class="i"><div class="n">آسمانه</div><div class="h">#9AA8DE</div></div></div>
+          <div class="sw"><div class="f" style="background:#ddb65c"></div><div class="i"><div class="n">زعفرانی</div><div class="h">#DDB65C</div></div></div>
+        </div>
+      </div>
+
+      <div class="pal-card">
+        <div class="pal-head">
+          <div><h4>شکوفه‌ی خاک <span class="latin">Clay Bloom</span></h4><p>بومِ روشنِ کِرِمی-خاکی + پاستل‌های گرم‌تر و آتلیه‌ای. برای وجه گرم‌تر و صمیمی‌تر (مناسب کافه/کلینیک).</p></div>
+          <span class="pal-tag" style="background:rgba(154,168,222,0.14);color:var(--aseman)">جایگزین ۱</span>
+        </div>
+        <div class="pal-swatches">
+          <div class="sw"><div class="f" style="background:#241a1f"></div><div class="i"><div class="n">شبق‌گون</div><div class="h">#241A1F</div></div></div>
+          <div class="sw"><div class="f" style="background:#f3e9dc"></div><div class="i"><div class="n">کِرِمی</div><div class="h">#F3E9DC</div></div></div>
+          <div class="sw"><div class="f" style="background:#d98e82"></div><div class="i"><div class="n">رُز خاکی</div><div class="h">#D98E82</div></div></div>
+          <div class="sw"><div class="f" style="background:#a7ad74"></div><div class="i"><div class="n">زیتونی</div><div class="h">#A7AD74</div></div></div>
+          <div class="sw"><div class="f" style="background:#b7a8c6"></div><div class="i"><div class="n">یاسی خاکستری</div><div class="h">#B7A8C6</div></div></div>
+          <div class="sw"><div class="f" style="background:#7a4562"></div><div class="i"><div class="n">آلبالویی</div><div class="h">#7A4562</div></div></div>
+        </div>
+      </div>
+
+      <div class="pal-card">
+        <div class="pal-head">
+          <div><h4>مدارِ پاستل <span class="latin">Pastel Circuit</span></h4><p>بومِ نزدیک‌به‌سیاهِ سرد + پاستل‌های اشباع‌تر و فناوری‌محور. برای وجه هوش‌مصنوعی‌محورتر و جسورتر.</p></div>
+          <span class="pal-tag" style="background:rgba(127,190,180,0.14);color:var(--firoozeh)">جایگزین ۲</span>
+        </div>
+        <div class="pal-swatches">
+          <div class="sw"><div class="f" style="background:#121319"></div><div class="i"><div class="n">مدادی</div><div class="h">#121319</div></div></div>
+          <div class="sw"><div class="f" style="background:#efeff7"></div><div class="i"><div class="n">مه‌سفید</div><div class="h">#EFEFF7</div></div></div>
+          <div class="sw"><div class="f" style="background:#c6a0ee"></div><div class="i"><div class="n">ارغوانیِ نئون‌کدر</div><div class="h">#C6A0EE</div></div></div>
+          <div class="sw"><div class="f" style="background:#82e6d3"></div><div class="i"><div class="n">نعنایی</div><div class="h">#82E6D3</div></div></div>
+          <div class="sw"><div class="f" style="background:#f2a6a6"></div><div class="i"><div class="n">مرجانی</div><div class="h">#F2A6A6</div></div></div>
+          <div class="sw"><div class="f" style="background:#d8e894"></div><div class="i"><div class="n">لیمویی کدر</div><div class="h">#D8E894</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="usage-note reveal">
+      <span class="ic">🎨</span>
+      <p><b>قاعده‌ی مصرف (هر سه پالت):</b> حداکثر ۶ رنگ در کل سیستم. رنگ اول (خشتی/رز خاکی/ارغوانی) امضای برند است و باید در بیش از نیمی از نقاط تماس دیده شود؛ دومی فقط برای وضعیت مثبت/تکمیل‌شده، سومی فقط برای بخش‌های هوش مصنوعی، و چهارمی فقط برای اقدام فوری یا هشدار — نه هرجا که خواستید رنگ اضافه کنید.</p>
+    </div>
+
+    <div class="tester reveal">
+      <div class="tester-head">
+        <h4>پنل تستِ زنده — این‌جا واقعاً امتحان کنید</h4>
+        <div class="pal-buttons" id="palButtons">
+          <button class="pal-btn active" data-pal="ember">جوهر و اِمبر</button>
+          <button class="pal-btn" data-pal="clay">شکوفه‌ی خاک</button>
+          <button class="pal-btn" data-pal="circuit">مدارِ پاستل</button>
+        </div>
+      </div>
+      <div class="demo-panel" id="demoPanel">
+        <div class="demo-top">
+          <div class="demo-brand"><span class="dotm" id="demoDot"></span><span id="demoBrandName">زربَفین — پنل مدیریت</span></div>
+          <span>داشبورد نمایشی · قابل‌تعویض</span>
+        </div>
+        <div class="demo-body" id="demoStats"></div>
+        <div class="demo-rows" id="demoRows"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TYPOGRAPHY ============ -->
+<section class="typesec" id="type">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">تایپوگرافی — چهار فونت، چهار وظیفه</span>
+      <h2>هیچ فونتِ رایج نسخه‌ی قبل تکرار نشده</h2>
+      <p>وزیرمتن تنها فونتی‌ست که از نسخه‌ی ۱ نگه داشته شده — چون در محصولات فعلی شما استفاده می‌شود و خوانایی‌اش اثبات‌شده. سه فونت دیگر کاملاً جایگزین شده‌اند: سریفِ لاتین از Fraunces به <b style="color:var(--kheshti)">Instrument Serif</b> تغییر کرد (ظریف‌تر، ادیتوریال‌تر)، فونت رابط کاربری لاتین <b style="color:var(--firoozeh)">Bricolage Grotesque</b> اضافه شد (برای عنوان‌های انگلیسی و بج‌ها، شخصیت‌دار و کمتردیده‌شده)، و مهم‌تر از همه، فونتِ دیتا/مونو از JetBrains Mono به <b style="color:var(--zafarani)">Azeret Mono</b> تغییر کرد — فونتی با ریشه در فونت‌های OCR، حس مهندسی/دقیق دارد و در داشبوردهای رایج کمتر دیده می‌شود.</p>
+    </div>
+    <div class="type-quad reveal-stagger">
+      <div class="tq-item"><div class="sample-fa" style="font-size:26px;">وزیرمتن</div><div class="job">فارسی — رابط کاربری و بدنه</div></div>
+      <div class="tq-item"><div class="sample-en" style="font-size:24px;">Instrument</div><div class="job">لاتین — وردمارک و نقل‌قول</div></div>
+      <div class="tq-item"><div class="sample-accent" style="font-size:22px;">Bricolage</div><div class="job">لاتین — عنوان و بج</div></div>
+      <div class="tq-item"><div class="sample-mono" style="font-size:20px;">Azeret 94%</div><div class="job">دیتا و اعداد</div></div>
+    </div>
+    <div class="type-grid reveal-stagger">
+      <div class="type-card">
+        <h5>خانواده‌ی فارسی — Vazirmatn</h5>
+        <div class="sample-fa">هر مشتری یک رشته‌ی طلاست</div>
+        <div class="body-sample">وزن‌های Black و ExtraBold برای عنوان‌ها، Medium برای بدنه‌ی متن، و همان فونت برای اعداد فارسی — یکدستی کامل در سراسر محصول.</div>
+      </div>
+      <div class="type-card">
+        <h5>سریف امضا — Instrument Serif (لاتین)</h5>
+        <div class="sample-en">Every thread, one intelligent fabric.</div>
+        <div class="body-sample">فقط برای وردمارک «Zarbafin»، تیتر صفحات انگلیسی و نقل‌قول‌های شاخص؛ منحنی‌های ظریف و ایتالیک طبیعی، بدون سنگینیِ سریف‌های کلاسیک.</div>
+      </div>
+    </div>
+    <div class="type-card reveal">
+      <h5>مقیاس تایپوگرافی</h5>
+      <div class="type-scale">
+        <div class="tsc-row"><span class="lbl">DISPLAY / 56</span><span class="sample" style="font-size:40px">زربَفین</span></div>
+        <div class="tsc-row"><span class="lbl">H1 / 34</span><span class="sample" style="font-size:28px">سامانه‌ی هوشمند مشتری</span></div>
+        <div class="tsc-row"><span class="lbl">H2 / 22</span><span class="sample" style="font-size:20px">هر صنف، یک پوسته</span></div>
+        <div class="tsc-row"><span class="lbl">BODY / 15</span><span class="sample" style="font-size:15px;font-weight:500">متن اصلی محصول و برندبوک</span></div>
+        <div class="tsc-row"><span class="lbl">MONO / DATA</span><span class="sample" style="font-family:var(--f-mono);font-size:13px;font-weight:500;color:var(--firoozeh)">۹۴٪ نرخ پیگیری · +۳۰ روز · #E2A177</span></div>
+        <div class="tsc-row"><span class="lbl">ACCENT EN</span><span class="sample" style="font-family:var(--f-accent);font-size:15px;font-weight:700">INTELLIGENT CRM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VOICE ============ -->
+<section class="voicesec" id="voice">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">لحن و صدای برند — شعارهای تازه</span>
+      <h2>مؤسسه‌ای، دقیق، انسانی — هرگز اغراق‌آمیز</h2>
+      <p>شعارِ نسخه‌ی ۱ («هر مشتری یک نخ است...») توضیحی و طولانی بود. این‌جا پنج مسیر کوتاه‌تر و برنده‌تر پیشنهاد شده؛ یکی به‌عنوان شعار اصلیِ هدر انتخاب شده، بقیه برای کاربردهای مختلف (کارت‌ویزیت، بیو شبکه‌ی اجتماعی، اسلاید اول ارائه) قابل استفاده‌اند.</p>
+    </div>
+    <div class="tagline-grid reveal-stagger">
+      <div class="tag-card win"><p>«هر کسب‌وکاری یک رشته‌ی طلایی با مشتریانش دارد؛ زربَفین آن را می‌بافد.»</p><span>شعار اصلی — نسخه‌ی هدر و لوگو</span></div>
+      <div class="tag-card"><p>«هوشِ مشترکِ هر کسب‌وکار با مشتریانش.»</p><span>کوتاه‌ترین نسخه — بیوی شبکه‌ی اجتماعی</span></div>
+      <div class="tag-card"><p>«از اولین پیام تا آخرین خرید، یک رشته‌ی هوشمند.»</p><span>نسخه‌ی سفر مشتری — اسلاید ارائه</span></div>
+      <div class="tag-card"><p>«هر صنف، یک پارچه؛ یک زیرساخت.»</p><span>نسخه‌ی موقعیت‌یابی — کارت‌ویزیت</span></div>
+      <div class="tag-card"><p>«CRM ای که صنف شما را از حفظ است.»</p><span>نسخه‌ی گفتاری/فروش — تماس اول با مشتری</span></div>
+      <div class="tag-card"><p>«مشتری را ثبت نمی‌کنیم؛ می‌بافیم.»</p><span>نسخه‌ی جسورانه — پست شبکه‌ی اجتماعی</span></div>
+    </div>
+    <div class="voice-pillars reveal-stagger">
+      <div class="vp"><div class="vp-ic">🎯</div><h5>دقیق</h5><p>عدد و مدرک، نه شعار</p></div>
+      <div class="vp"><div class="vp-ic">🧭</div><h5>متین</h5><p>آرام، بدون فوریت مصنوعی</p></div>
+      <div class="vp"><div class="vp-ic">🤝</div><h5>انسانی</h5><p>فارسیِ روان، نه ترجمه‌ای</p></div>
+      <div class="vp"><div class="vp-ic">🧵</div><h5>راهبر</h5><p>همیشه یک قدم بعدی روشن</p></div>
+    </div>
+    <div class="voice-compare reveal-stagger">
+      <div class="vc-col no">
+        <h5>❌ خارج از لحن زربَفین</h5>
+        <div class="vc-item">«انقلابی‌ترین سیستم هوش مصنوعی جهان که همه‌چیز را برای همیشه تغییر می‌دهد!»</div>
+        <div class="vc-item">«فوراً همین الان کلیک کنید وگرنه این فرصت را از دست می‌دهید!!!»</div>
+        <div class="vc-item">«سلام رفیق 😎 بیا ببینیم امروز چیکار کردی»</div>
+      </div>
+      <div class="vc-col yes">
+        <h5>✅ در لحن زربَفین</h5>
+        <div class="vc-item">«در یک نمونه‌ی واقعی، نرخ پیگیری بیماران از ۶۰٪ به ۹۴٪ رسید.»</div>
+        <div class="vc-item">«۳ روز از آخرین تماس با این مشتری گذشته — پیشنهاد می‌کنیم امروز پیگیری شود.»</div>
+        <div class="vc-item">«صبح بخیر. امروز ۶ کار در اولویت شماست.»</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VERTICALS ============ -->
+<section class="verticals" id="verticals">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">سازگاری با هر صنف</span>
+      <h2>یک هسته، پنج پوسته‌ی نمونه — و هر صنف دیگری که مشتری دارد</h2>
+      <p>در هر صنف، یکی از چهار پاستل «رنگ پیشرو» می‌شود؛ بقیه‌ی سیستم (بوم تیره، تایپوگرافی، لحن) ثابت می‌ماند. این بخش بر اساس اطلاعاتِ ثبت‌شده در نسخه‌ی ۱ بازسازی شده — با ارسال دو کاتالوگ محصول (کلینیک زیبایی و CRM خودرو)، می‌توانم آن را با جزئیات دقیق‌تر تکمیل کنم.</p>
+    </div>
+    <div class="vert-grid reveal-stagger">
+      <div class="vert-card vc-clinic"><div class="vic">💇</div><h5>کلینیک زیبایی و کاشت مو</h5><p>رنگ پیشرو: خشتی. لحن: مطمئن و پزشکی، با گرمای مراقبتی.</p></div>
+      <div class="vert-card vc-med"><div class="vic">🩺</div><h5>مطب و کلینیک پزشکی</h5><p>رنگ پیشرو: آسمانه. لحن: رسمی‌تر، آرام، متمرکز بر اعتماد بالینی.</p></div>
+      <div class="vert-card vc-cafe"><div class="vic">☕</div><h5>کافه و رستوران</h5><p>رنگ پیشرو: زعفرانی. لحن: صمیمی، سریع، پر از دعوت به بازگشت.</p></div>
+      <div class="vert-card vc-auto"><div class="vic">🚗</div><h5>خدمات و نمایشگاه خودرو</h5><p>رنگ پیشرو: فیروزه‌ای. لحن: مطمئن، عددمحور، شخصیت‌محور.</p></div>
+      <div class="vert-card vc-any"><div class="vic">✨</div><h5>و هر صنف دیگر</h5><p>باشگاه، آموزشگاه، املاک، خرده‌فروشی — همان هسته، پوسته و رنگِ پیشروی تازه.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPLICATION ============ -->
+<section class="applic" id="applic">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">اپلیکیشن هویت</span>
+      <h2>همین پالت، روی یک داشبورد واقعی</h2>
+      <p>نمونه‌ای از این‌که چگونه پالت «جوهر و اِمبر» و تایپوگرافیِ زربَفین، به‌جای پس‌زمینه‌های تیره‌ی رایج تِک، روی بومِ جوهریِ گرم و پاستل‌های جواهرگون در محیط محصول واقعی ظاهر می‌شود.</p>
+    </div>
+    <div class="mock-frame reveal">
+      <div class="mock-top">
+        <div class="mock-brand"><svg viewBox="0 0 60 60"><use href="#zarbafin-mark"></use></svg><span>زربَفین — پنل مدیریت</span></div>
+        <span style="font-family:var(--f-mono);font-size:11px;color:var(--text-faint)">داشبورد نمایشی</span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-stat"><div class="k" style="color:var(--kheshti)">۳۱</div><div class="l">نوبت امروز</div></div>
+        <div class="mock-stat"><div class="k" style="color:var(--firoozeh)">۹۴٪</div><div class="l">نرخ پیگیری</div></div>
+        <div class="mock-stat"><div class="k" style="color:var(--aseman)">۱۲</div><div class="l">پیشنهاد هوش مصنوعی</div></div>
+        <div class="mock-stat"><div class="k" style="color:var(--zafarani)">۶</div><div class="l">کمپین فعال</div></div>
+      </div>
+      <div class="mock-rows">
+        <div class="mock-row"><div class="av" style="background:var(--kheshti)"></div><div class="body"><div class="t">مشتری #۱۰۴ — پیگیری امروز</div><div class="s">پیشنهاد شخصیت خرید: حساس به قیمت</div></div><span class="status" style="background:rgba(127,190,180,0.18);color:var(--firoozeh)">آماده</span></div>
+        <div class="mock-row"><div class="av" style="background:var(--aseman)"></div><div class="body"><div class="t">کمپین «بازگشت مشتری» — کانال ترکیبی</div><div class="s">پیامک + واتس‌اپ + ایمیل</div></div><span class="status" style="background:rgba(221,182,92,0.18);color:var(--zafarani)">در حال ارسال</span></div>
+        <div class="mock-row"><div class="av" style="background:var(--firoozeh)"></div><div class="body"><div class="t">گزارش هفتگی عملکرد</div><div class="s">تفکیک‌شده بر اساس شعبه</div></div><span class="status" style="background:rgba(226,161,119,0.18);color:var(--kheshti)">آماده مرور</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOVERNANCE ============ -->
+<section class="govern" id="govern">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">حاکمیت برند</span>
+      <h2>چک‌لیستِ سریع پیش از انتشار هر چیزی با نام زربَفین</h2>
+    </div>
+    <div class="gov-grid reveal-stagger">
+      <div class="gov-item"><span class="gi">✓</span><p><b>رنگ خشتی</b> حداقل یک‌بار در هر صفحه یا سند دیده می‌شود.</p></div>
+      <div class="gov-item"><span class="gi">✓</span><p>بیش از <b>۶ رنگ</b> یا <b>۴ خانواده‌ی فونت</b> در یک طراحی استفاده نمی‌شود.</p></div>
+      <div class="gov-item"><span class="gi">✓</span><p>هیچ ادعای مطلق («بی‌نظیر»، «انقلابی») بدون عدد یا مدرک نوشته نمی‌شود.</p></div>
+      <div class="gov-item"><span class="gi">✓</span><p>در نسخه‌ی هر صنف، فقط <b>رنگ پیشرو</b> عوض می‌شود، نه بومِ اصلی.</p></div>
+      <div class="gov-item"><span class="gi">✓</span><p>فونتِ دیتا (Azeret Mono) فقط برای اعداد و کد استفاده می‌شود، نه عنوان‌ها.</p></div>
+      <div class="gov-item"><span class="gi">✓</span><p>پیش از ثبت رسمی اسم، استعلام اداره‌ی ثبت علائم تجاری انجام می‌شود.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="closing">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> جمع‌بندی</span>
+    <h2>زربَفین — رشته‌ی هوشمندی که هر کسب‌وکار را به مشتریانش می‌بافد</h2>
+    <p>این نسخه‌ی ۲٫۰ برندبوک است. با تأیید اسم نهایی (زربَفین، پرنیوا، یا هر گزینه‌ی دیگر از ۵۱ نامزد) و پالت نهایی، می‌توانم فایل‌های قابل‌صدورِ لوگو (SVG/AI/PNG)، قالب پاورپوینت شرکا و کیت کامل شبکه‌های اجتماعی را هم بسازم — و اگر دو کاتالوگ محصول را بفرستید، بخش صنوف را با جزئیات دقیق‌تر تکمیل می‌کنم.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© ۲۰۲۶ — برندبوک زربَفین. نسخه‌ی ۲٫۰ — تدوین‌شده برای سامانه‌ی هوشمند CRM · ECRM · MCRM و دیجیتال مارکتینگ چندصنفی.</div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+revealEls.forEach(el => io.observe(el));
+
+const nameTabs = document.querySelectorAll('.name-tab');
+const namePanels = document.querySelectorAll('.name-panel');
+nameTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    nameTabs.forEach(t => t.classList.remove('active'));
+    namePanels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.name-panel[data-panel="${tab.dataset.cat}"]`).classList.add('active');
+  });
+});
+
+/* ---- LIVE PALETTE TESTER ---- */
+const palettes = {
+  ember:  { name:'زربَفین — پنل مدیریت', canvas:'#17111c', canvas2:'#1f1826', text:'#f5ede1', textf:'#8d8093', p:'#e2a177', s:'#7fbeb4', t:'#9aa8de', a:'#ddb65c' },
+  clay:   { name:'زربَفین — پوسته‌ی گرم', canvas:'#241a1f', canvas2:'#332430', text:'#f6ece2', textf:'#a5919c', p:'#d98e82', s:'#a7ad74', t:'#b7a8c6', a:'#7a4562' },
+  circuit:{ name:'زربَفین — پوسته‌ی مدار', canvas:'#121319', canvas2:'#191b22', text:'#eef0fa', textf:'#8189a6', p:'#c6a0ee', s:'#82e6d3', t:'#f2a6a6', a:'#d8e894' }
+};
+
+const demoStatsData = [
+  { key:'p', k:'۳۱', l:'نوبت امروز' },
+  { key:'s', k:'۹۴٪', l:'نرخ پیگیری' },
+  { key:'t', k:'۱۲', l:'پیشنهاد هوش مصنوعی' },
+  { key:'a', k:'۶', l:'کمپین فعال' }
+];
+const demoRowsData = [
+  { key:'p', t:'مشتری #۱۰۴ — پیگیری امروز', s:'شخصیت خرید: حساس به قیمت', statusKey:'s', statusLabel:'آماده' },
+  { key:'t', t:'کمپین «بازگشت مشتری»', s:'پیامک + واتس‌اپ + ایمیل', statusKey:'a', statusLabel:'در حال ارسال' },
+  { key:'s', t:'گزارش هفتگی عملکرد', s:'تفکیک‌شده بر اساس شعبه', statusKey:'p', statusLabel:'آماده مرور' }
+];
+
+function hexToRgba(hex, alpha){
+  const h = hex.replace('#','');
+  const r = parseInt(h.substring(0,2),16), g = parseInt(h.substring(2,4),16), b = parseInt(h.substring(4,6),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function renderPalette(id){
+  const p = palettes[id];
+  const panel = document.getElementById('demoPanel');
+  panel.style.setProperty('--dc', p.canvas);
+  panel.style.setProperty('--dc2', p.canvas2);
+  panel.style.setProperty('--dt', p.text);
+  panel.style.setProperty('--dtf', p.textf);
+  panel.style.setProperty('--dp', p.p);
+  document.getElementById('demoDot').style.background = p.p;
+  document.getElementById('demoBrandName').textContent = p.name;
+
+  const statsEl = document.getElementById('demoStats');
+  statsEl.innerHTML = demoStatsData.map(s => `
+    <div class="demo-stat" style="background:${p.canvas2}">
+      <div class="k" style="color:${p[s.key]}">${s.k}</div>
+      <div class="l" style="color:${p.textf}">${s.l}</div>
+    </div>`).join('');
+
+  const rowsEl = document.getElementById('demoRows');
+  rowsEl.innerHTML = demoRowsData.map(r => `
+    <div class="demo-row" style="background:${p.canvas2}">
+      <div class="av" style="background:${p[r.key]}"></div>
+      <div class="body">
+        <div class="t" style="color:${p.text}">${r.t}</div>
+        <div class="s" style="color:${p.textf}">${r.s}</div>
+      </div>
+      <span class="status" style="background:${hexToRgba(p[r.statusKey],0.2)};color:${p[r.statusKey]}">${r.statusLabel}</span>
+    </div>`).join('');
+}
+
+document.querySelectorAll('.pal-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pal-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPalette(btn.dataset.pal);
+  });
+});
+renderPalette('ember');
+</script>
+</body>
+</html>
